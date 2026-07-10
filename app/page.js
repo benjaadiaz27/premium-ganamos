@@ -1,13 +1,7 @@
-import Hero from "../components/Hero";
-import Benefits from "../components/Benefits";
-import WhatsApp from "../components/WhatsApp";
-
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Benefits />
-      <WhatsApp />
-    </main>
+    <h1>
+      PRUEBA PREMIUM GANAMOS
+    </h1>
   );
 }
