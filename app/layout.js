@@ -16,39 +16,17 @@ export const metadata = {
   title: "Premium Ganamos | Casino Online",
   description:
     "Jugá con cargas rápidas, retiros 24 hs y atención personalizada por WhatsApp.",
-
-  keywords: [
-    "casino online",
-    "casino",
-    "slots",
-    "apuestas online",
-    "Premium Ganamos",
-    "casino argentino",
-    "casino virtual",
-  ],
-
-  authors: [
-    {
-      name: "Premium Ganamos",
-    },
-  ],
-
-  openGraph: {
-    title: "Premium Ganamos | Casino Online",
-    description:
-      "Jugá con cargas rápidas, retiros 24 hs y atención personalizada.",
-    images: ["/og-image.jpg"],
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="es">
       <head>
-        <Script id="meta-pixel" strategy="afterInteractive">
+
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+        >
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -66,13 +44,24 @@ export default function RootLayout({ children }) {
             }(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
 
-            fbq('init', '1552320336248740');
+            fbq('init', '2137102760187798');
             fbq('track', 'PageView');
           `}
         </Script>
+
       </head>
 
-      <body className="min-h-full flex flex-col">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2137102760187798&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+
         {children}
       </body>
     </html>
