@@ -1,5 +1,5 @@
 "use client";
-
+import { Crown } from "lucide-react";
 import { getWhatsAppLink } from "../lib/config";
 
 export default function Hero() {
@@ -11,7 +11,9 @@ export default function Hero() {
       <div className="hero-card">
 
         <div className="logo">
-  <span className="logo-icon">★</span>
+  <span className="logo-icon">
+  <Crown size={28} strokeWidth={2.5} />
+</span>
   <span> Premium Ganamos</span>
 </div>
 
@@ -34,6 +36,11 @@ export default function Hero() {
   target="_blank"
   rel="noopener noreferrer"
   className="btn-primary"
+  onClick={() => {
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "Lead");
+    }
+  }}
 >
   CREAR USUARIO
 </a>
