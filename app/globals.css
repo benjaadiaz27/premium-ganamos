@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #d4af37;
+  --dark: #050505;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--dark);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,.60),
+rgba(0,0,0,.80)
+    ),
+    url("/casino-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* Luz dorada en movimiento */
+.hero::before {
+
+  content:"";
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212,175,55,.35),
+      transparent 70%
+    );
+
+  filter:blur(20px);
+
+  animation: moveGlow 8s infinite alternate;
+
+}
+
+
+/* Segunda luz */
+.hero::after {
+
+  content:"";
+
+  position:absolute;
+
+  width:350px;
+  height:350px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,215,0,.20),
+      transparent 70%
+    );
+
+  right:-100px;
+  bottom:-100px;
+
+  filter:blur(30px);
+
+  animation: moveGlow2 10s infinite alternate;
+
+}
+
+
+@keyframes moveGlow {
+
+  from {
+    transform:translate(-150px,-100px);
+  }
+
+  to {
+    transform:translate(120px,80px);
+  }
+
+}
+
+
+@keyframes moveGlow2 {
+
+  from {
+    transform:translate(0,0);
+  }
+
+  to {
+    transform:translate(-120px,-80px);
+  }
+
+}
+
+.hero-card {
+  width:100%;
+  max-width:500px;
+  text-align:center;
+  padding:40px 25px;
+  border-radius:25px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02)
+  );
+
+  border:1px solid rgba(212,175,55,.4);
+
+  box-shadow:
+  0 0 40px rgba(212,175,55,.15);
+
+  animation:
+  fadeUp 1s ease,
+  float 5s ease-in-out infinite;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 30px;
+  background: rgba(212,175,55,.15);
+  color: var(--gold);
+}
+
+h1 {
+  margin-top: 25px;
+  font-size: 45px;
+  color: var(--gold);
+}
+
+p {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 35px;
+  border-radius: 50px;
+  background: var(--gold);
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats strong {
+  color: var(--gold);
+  font-size: 22px;
+}
+
+.stats span {
+  color: #aaa;
+}
+.logo {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  font-size:24px;
+  font-weight:bold;
+  color:#d4af37;
+  margin-bottom:25px;
+}
+
+.logo:first-letter {
+  font-size:35px;
+}
+
+
+.hero-card {
+  animation: float 4s ease-in-out infinite;
+}
+
+
+.btn-primary {
+
+  position:relative;
+  overflow:hidden;
+
+  display:inline-block;
+
+  margin-top:30px;
+
+  padding:15px 35px;
+
+  border-radius:50px;
+
+  background:#d4af37;
+
+  color:black;
+
+  font-weight:bold;
+
+  text-decoration:none;
+
+  box-shadow:
+  0 0 25px rgba(212,175,55,.5);
+
+}
+
+
+.btn-primary::before {
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-100%;
+
+  width:60%;
+  height:100%;
+
+  background:
+  linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.7),
+    transparent
+  );
+
+  animation:
+  shine 3s infinite;
+
+}
+
+
+@keyframes shine {
+
+  100% {
+    left:150%;
+  }
+
+}
+
+
+@keyframes float {
+
+  0%,100% {
+    transform:translateY(0);
+  }
+
+  50% {
+    transform:translateY(-8px);
+  }
+
+}
+
+
+@keyframes pulse {
+
+  0% {
+    box-shadow:0 0 0 0 rgba(212,175,55,.6);
+  }
+
+  70% {
+    box-shadow:0 0 0 15px rgba(212,175,55,0);
+  }
+
+  100% {
+    box-shadow:0 0 0 0 rgba(212,175,55,0);
+  }
+
+}
+.logo-icon {
+  width:45px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(212,175,55,.15);
+  color:#d4af37;
+  font-size:28px;
+  box-shadow:0 0 20px rgba(212,175,55,.4);
+}
+.benefits {
+  padding: 70px 20px;
+  text-align: center;
+  background: linear-gradient(180deg,#050505,#0d0d0d);
+}
+
+.benefits h2 {
+  color: #d4af37;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.benefit-grid {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 25px;
+}
+
+.benefit-card {
+  padding: 30px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(212,175,55,.25);
+}
+
+.benefit-icon {
+  font-size: 40px;
+}
+.whatsapp {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+
+  width: 60px;
+  height: 60px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#25D366;
+  color:white;
+
+  font-size:30px;
+  text-decoration:none;
+
+  box-shadow:0 0 25px rgba(37,211,102,.6);
+
+  z-index:1000;
+
+  animation: whatsappPulse 2s infinite;
+}
+
+
+@keyframes whatsappPulse {
+
+  0% {
+    transform:scale(1);
+  }
+
+  50% {
+    transform:scale(1.1);
+  }
+
+  100% {
+    transform:scale(1);
+  }
+
+}
+@keyframes fadeUp {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(50px)
+    scale(.95);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0)
+    scale(1);
+  }
+
+}
