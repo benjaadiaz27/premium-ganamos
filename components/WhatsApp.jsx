@@ -1,3 +1,4 @@
+"use client";
 import { getWhatsAppLink } from "../lib/config";
 
 export default function WhatsApp() {
