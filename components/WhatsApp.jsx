@@ -1,12 +1,34 @@
 "use client";
+
 import { getWhatsAppLink } from "../lib/config";
 
 export default function WhatsApp() {
 
-  const handleClick = () => {
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "Lead");
+  const handleClick = async () => {
+
+    const eventId = crypto.randomUUID();
+
+    if (window.fbq) {
+      window.fbq(
+        "track",
+        "Lead",
+        {},
+        {
+          eventID: eventId,
+        }
+      );
     }
+
+    await fetch("/api/meta", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId,
+        url: window.location.href,
+      }),
+    });
   };
 
   return (
