@@ -1,12 +1,7 @@
-"use client";
+const handleClick = async (e) => {
+  e.preventDefault();
 
-import { getWhatsAppLink } from "../lib/config";
-
-export default function WhatsApp() {
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-
+  try {
     const eventId = crypto.randomUUID();
 
     console.log("Click");
@@ -15,7 +10,7 @@ export default function WhatsApp() {
       window.fbq("track", "Lead", {}, { eventID: eventId });
     }
 
-    await fetch("/api/meta", {
+    const response = await fetch("/api/meta", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,16 +21,14 @@ export default function WhatsApp() {
       }),
     });
 
-    window.location.href = getWhatsAppLink();
-  };
+    console.log("Status:", response.status);
 
-  return (
-    <a
-      href={getWhatsAppLink()}
-      className="whatsapp"
-      onClick={handleClick}
-    >
-      💬
-    </a>
-  );
-}
+    const data = await response.json();
+    console.log("Respuesta:", data);
+
+  } catch (err) {
+    console.error("Error:", err);
+  }
+
+  window.location.href = getWhatsAppLink();
+};
