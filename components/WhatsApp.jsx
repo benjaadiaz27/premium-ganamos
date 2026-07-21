@@ -4,19 +4,15 @@ import { getWhatsAppLink } from "../lib/config";
 
 export default function WhatsApp() {
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
 
     const eventId = crypto.randomUUID();
 
+    console.log("Click");
+
     if (window.fbq) {
-      window.fbq(
-        "track",
-        "Lead",
-        {},
-        {
-          eventID: eventId,
-        }
-      );
+      window.fbq("track", "Lead", {}, { eventID: eventId });
     }
 
     await fetch("/api/meta", {
@@ -29,13 +25,13 @@ export default function WhatsApp() {
         url: window.location.href,
       }),
     });
+
+    window.location.href = getWhatsAppLink();
   };
 
   return (
     <a
       href={getWhatsAppLink()}
-      target="_blank"
-      rel="noopener noreferrer"
       className="whatsapp"
       onClick={handleClick}
     >
