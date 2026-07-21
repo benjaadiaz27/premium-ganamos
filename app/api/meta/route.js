@@ -2,6 +2,8 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
+    console.log("Evento recibido:", body);
+
     const response = await fetch(
       `https://graph.facebook.com/v23.0/${process.env.META_PIXEL_ID}/events?access_token=${process.env.META_ACCESS_TOKEN}`,
       {
@@ -32,8 +34,12 @@ export async function POST(req) {
 
     const result = await response.json();
 
+    console.log("Respuesta de Meta:", result);
+
     return Response.json(result);
   } catch (error) {
+    console.error(error);
+
     return Response.json(
       { error: error.message },
       { status: 500 }
