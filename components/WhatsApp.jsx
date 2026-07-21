@@ -1,16 +1,18 @@
-const handleClick = async (e) => {
-  e.preventDefault();
+"use client";
 
-  try {
+import { getWhatsAppLink } from "../lib/config";
+
+export default function WhatsApp() {
+  const handleClick = async (e) => {
+    e.preventDefault();
+
     const eventId = crypto.randomUUID();
-
-    console.log("Click");
 
     if (window.fbq) {
       window.fbq("track", "Lead", {}, { eventID: eventId });
     }
 
-    const response = await fetch("/api/meta", {
+    await fetch("/api/meta", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,14 +23,16 @@ const handleClick = async (e) => {
       }),
     });
 
-    console.log("Status:", response.status);
+    window.location.href = getWhatsAppLink();
+  };
 
-    const data = await response.json();
-    console.log("Respuesta:", data);
-
-  } catch (err) {
-    console.error("Error:", err);
-  }
-
-  window.location.href = getWhatsAppLink();
-};
+  return (
+    <a
+      href={getWhatsAppLink()}
+      className="whatsapp"
+      onClick={handleClick}
+    >
+      💬
+    </a>
+  );
+}

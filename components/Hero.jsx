@@ -12,7 +12,7 @@ export default function Hero() {
 
         <div className="logo">
   <span className="logo-icon">
-  <Crown size={28} strokeWidth={2.5} />
+  <span role="img" aria-label="corona">👑</span>
 </span>
   <span> Premium Ganamos</span>
 </div>
