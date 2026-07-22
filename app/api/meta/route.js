@@ -1,6 +1,13 @@
+import { cookies } from "next/headers";
+
 export async function POST(req) {
   try {
     const body = await req.json();
+
+    const cookieStore = await cookies();
+
+    const fbp = cookieStore.get("_fbp")?.value;
+    const fbc = cookieStore.get("_fbc")?.value;
 
     console.log("Evento recibido:", body);
 
@@ -22,9 +29,11 @@ export async function POST(req) {
 
               user_data: {
                 client_ip_address:
-                  req.headers.get("x-forwarded-for") || "",
+                  req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "",
                 client_user_agent:
                   req.headers.get("user-agent") || "",
+                fbp,
+                fbc,
               },
             },
           ],
@@ -36,12 +45,17 @@ export async function POST(req) {
 
     console.log("Respuesta de Meta:", result);
 
-    return Response.json(result);
+    return Response.json(result, {
+      status: response.ok ? 200 : response.status,
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Error enviando evento a Meta:", error);
 
     return Response.json(
-      { error: error.message },
+      {
+        success: false,
+        error: error.message,
+      },
       { status: 500 }
     );
   }
