@@ -21,13 +21,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <head>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+
         {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+        >
           {`
             !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            {if(f.fbq)return;n=f.fbq=function(){
+            n.callMethod?
+            n.callMethod.apply(n,arguments):
+            n.queue.push(arguments)};
             if(!f._fbq)f._fbq=n;
             n.push=n;
             n.loaded=!0;
@@ -38,16 +44,24 @@ export default function RootLayout({ children }) {
             t.src=v;
             s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s);
-            }(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
+            }(
+              window,
+              document,
+              'script',
+              'https://connect.facebook.net/en_US/fbevents.js'
+            );
 
             fbq('init', '2137102760187798');
             fbq('track', 'PageView');
           `}
         </Script>
 
+
         {/* Signals Gateway */}
-        <Script id="signals-gateway" strategy="afterInteractive">
+        <Script
+          id="signals-gateway"
+          strategy="afterInteractive"
+        >
           {`
             !function(a,h,e,v,n,t,s){
               if(a.cbq)return;
@@ -78,9 +92,9 @@ export default function RootLayout({ children }) {
             cbq('track', 'PageView');
           `}
         </Script>
-      </head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+
+        {/* Fallback Pixel */}
         <noscript>
           <img
             height="1"
@@ -91,7 +105,9 @@ export default function RootLayout({ children }) {
           />
         </noscript>
 
+
         {children}
+
       </body>
     </html>
   );
