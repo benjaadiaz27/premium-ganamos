@@ -1,4 +1,5 @@
 "use client";
+
 import { Crown } from "lucide-react";
 import { getWhatsAppLink } from "../lib/config";
 
@@ -7,15 +8,21 @@ export default function Hero() {
 
   return (
     <section className="hero">
-
       <div className="hero-card">
 
         <div className="logo">
-  <span className="logo-icon">
-  <span role="img" aria-label="corona">👑</span>
-</span>
-  <span> Premium Ganamos</span>
-</div>
+          <div className="logo-icon">
+            <Crown
+              size={24}
+              strokeWidth={1.8}
+              fill="currentColor"
+            />
+          </div>
+
+          <span className="logo-text">
+            Premium Ganamos
+          </span>
+        </div>
 
         <span className="badge">
           ⭐ Plataforma Premium
@@ -32,22 +39,20 @@ export default function Hero() {
         </p>
 
         <a
-  href={getWhatsAppLink()}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn-primary"
-  onClick={() => {
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "Lead");
-    }
-  }}
->
-  CREAR USUARIO
-</a>
-
+          href={whatsAppLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary"
+          onClick={() => {
+            if (typeof window !== "undefined" && window.fbq) {
+              window.fbq("track", "Lead");
+            }
+          }}
+        >
+          CREAR USUARIO
+        </a>
 
         <div className="stats">
-
           <div>
             <strong>10.000+</strong>
             <span>Usuarios</span>
@@ -62,11 +67,9 @@ export default function Hero() {
             <strong>24/7</strong>
             <span>Soporte</span>
           </div>
-
         </div>
 
       </div>
-
     </section>
   );
 }
