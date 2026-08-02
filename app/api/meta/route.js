@@ -27,6 +27,11 @@ export async function POST(req) {
               event_source_url: body.url,
               event_id: body.eventId,
 
+custom_data: {
+  value: 2000,
+  currency: "ARS",
+},
+
               user_data: {
                 client_ip_address:
                   req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "",
