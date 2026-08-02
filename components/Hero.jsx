@@ -39,18 +39,35 @@ export default function Hero() {
         </p>
 
         <a
-          href={whatsAppLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary"
-          onClick={() => {
-            if (typeof window !== "undefined" && window.fbq) {
-              window.fbq("track", "Lead");
-            }
-          }}
-        >
-          CREAR USUARIO
-        </a>
+  href={whatsAppLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn-primary"
+  onClick={async (e) => {
+    e.preventDefault();
+
+    const eventId = crypto.randomUUID();
+
+    if (window.fbq) {
+      window.fbq("track", "Purchase", {}, { eventID: eventId });
+    }
+
+    await fetch("/api/meta", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId,
+        url: window.location.href,
+      }),
+    });
+
+    window.open(whatsAppLink, "_blank");
+  }}
+>
+  CREAR USUARIO
+</a>
 
         <div className="stats">
           <div>
