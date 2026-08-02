@@ -21,7 +21,7 @@ export async function POST(req) {
         body: JSON.stringify({
           data: [
             {
-              event_name: "Lead",
+              event_name: "Purchase",
               event_time: Math.floor(Date.now() / 1000),
               action_source: "website",
               event_source_url: body.url,

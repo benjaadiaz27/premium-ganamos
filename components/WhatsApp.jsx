@@ -9,7 +9,7 @@ export default function WhatsApp() {
     const eventId = crypto.randomUUID();
 
     if (window.fbq) {
-      window.fbq("track", "Lead", {}, { eventID: eventId });
+      window.fbq("track", "Purchase", {}, { eventID: eventId });
     }
 
     await fetch("/api/meta", {
